@@ -1,0 +1,42 @@
+.locales h2{
+    text-align: center;
+    margin: 15px;
+    padding: 25px;
+    background-color: #00408C ;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    
+}
+.locales .carousel-item img{
+    height: 50vw;
+    width: auto;
+}
+.locales .carousel-control-next-icon, .carousel-control-prev-icon{
+    border: solid white;
+    border-radius: 15%;
+}
+.locales .carousel-caption.d-none.d-md-block{
+    background-color: #e3e5ecd3;
+}
+.locales .carousel-caption.d-none.d-md-block h5{
+    color: black;
+}
+.masInfoContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 70%;
+    margin: 50px auto;
+    background-color: #E3E5EC;
+    border: solid #00408C;
+
+}
+.locales .masInfoContainer .flex-item{
+    padding: 26px;
+    
+}
+.locales .masInfoContainer .flex-item p{
+    text-align: justify;
+    
+    
+}

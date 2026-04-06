@@ -1,0 +1,11 @@
+.errorDiv {
+    text-align: center;
+}
+.errorDiv .errortext{
+    border: solid #00408C ;
+    margin: 60px 30% 60px;
+    padding: 30px;
+}
+.errorDiv img{
+    width: 30%;
+}
