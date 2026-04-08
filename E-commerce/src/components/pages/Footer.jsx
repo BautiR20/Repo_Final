@@ -18,7 +18,7 @@ function Footer() {
             <NavLink className="FootLink" to="/sucursales"><a  class="nav-link px-2 text-body-secondary">Locales</a></NavLink>
           </li>
           <li class="nav-item">
-           <NavLink className="FootLink" to="/contacto"><a  class="nav-link px-2 text-body-secondary">Contacto</a></NavLink>
+           <NavLink className="FootLink" to="/contacto"><a  class="nav-link px-2 text-body-secondary">Log In</a></NavLink>
           </li>
         </ul>
         <p class="text-center text-body-secondary">© 2025 NBA</p>

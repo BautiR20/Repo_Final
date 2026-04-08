@@ -3,9 +3,11 @@ import App from "./App";
 import Home from "./components/pages/Home";
 import Products from "./components/pages/Products";
 import Sucursales from "./components/pages/Sucursales";
-import Contacto from "./components/pages/Contacto";
+import Logueo from "./components/pages/Logueo";
 import LoadingPage from "./components/pages/Cargando";
 import ErrorPage from "./components/pages/ErrorPage";
+import Carrito from "./components/pages/Carrito";
+import CrearCuenta from "./components/pages/CrearCuenta";
 
 export const router = createBrowserRouter([
     {
@@ -25,8 +27,16 @@ export const router = createBrowserRouter([
                 element: <Sucursales/>
             },
             {
-                path: "/contacto",
-                element: <Contacto />
+                path: "/logueo",
+                element: <Logueo />
+            },
+            {
+                path: "/carrito",
+                element: <Carrito />
+            },
+            {
+                path: "/crearCuenta",
+                element: <CrearCuenta />
             },
             {
                 path: "*",

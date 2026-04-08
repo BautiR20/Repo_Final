@@ -1,0 +1,73 @@
+.logueo h2{
+    text-align: center;
+    margin: 15px;
+    padding: 25px;
+    background-color: #00408C ;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    color: white;
+}
+.logueo .grid-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 10px;
+}
+.logueo .grid-item{
+    gap: 15px;
+    margin: 10px;
+    padding: 15px;
+    border: 3px solid #E3E5EC ;
+    text-align: center;
+}
+.logueo .grid-item.datos{
+    grid-column: span 2;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+.logueo .grid-item label{
+    display: block;
+    margin: 10px;
+    text-align: left;
+}
+.logueo .grid-item input{
+    display: block;
+    margin: 10px;
+    text-align: left;
+}
+.logueo .grid-item textarea{
+    display: block;
+    margin: 10px;
+    text-align: left;
+}
+.logueo .grid-item select{
+    display: block;
+    margin: 10px;
+    text-align: left;
+}
+
+.logueo .grid-item.buttons{
+    margin: 20px 5px 20px 5px;
+    text-align: center;
+    padding: 5px 2.5px 5px 2.5px;
+    border: #E3E5EC;
+}
+.logueo .grid-item button{
+    margin: 20px 5px 20px 5px;
+    text-align: center;
+    padding: 5px 2.5px 5px 2.5px;
+    border: #E3E5EC solid;
+    background-color: #00408C;
+    width: 100px;
+    color: white;
+}
+.logueo .grid-item button:hover{
+    border: black solid;
+    background-color: #E3E5EC ;
+    width: 100px;
+    color: black;
+}
+#check{
+    display: inline;
+
+}
