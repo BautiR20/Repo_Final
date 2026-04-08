@@ -1,6 +1,7 @@
 import React from 'react'
-import gif from "../../../public/ball.gif"
+// import gif from "../../../public/ball.gif"
 import "../../styles/cargando.css"
+const gif  = "/ball.gif"
 function cargando() {
   return (
     <div class="cargandoDiv">

@@ -1,6 +1,7 @@
 import React from 'react'
 import "../../styles/errorPage.css"
-import gif from "../../../public/shaq.gif"
+// import gif from "../../../public/shaq.gif"
+const gif = "/shaq.gif"
 function ErrorPage() {
   return (
     <div class="errorDiv">
