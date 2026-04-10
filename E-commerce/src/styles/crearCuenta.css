@@ -73,3 +73,10 @@
     display: inline;
 
 }
+
+.error-banner {
+    text-align: center;
+}
+.success-banner {
+    text-align: center;
+}

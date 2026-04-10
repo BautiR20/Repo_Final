@@ -4,12 +4,15 @@ import App from './App'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import {AuthProvider} from './context/AuthProvider'
+import { CartProvider } from './context/CartContext'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
+      <CartProvider>
         <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
   </StrictMode>,
 )

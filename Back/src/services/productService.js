@@ -15,7 +15,8 @@ export const createProductService = async (productData) => {
 
 export const getAllProductService = async (query) => {
     let filters = {};
-
+    
+    filters.quantity = { $gt: 0 };
     // 1. Filtrado por categoría exacta
     if (query.category) {
         filters.category = query.category;

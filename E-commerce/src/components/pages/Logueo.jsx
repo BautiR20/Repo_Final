@@ -18,13 +18,14 @@ function Logueo() {
     // TODO: 4. Prevenir recarga y ejecutar loginUser. 
     // Si sale bien, redirigir usando navigate()
     if(result.success){
-      navigate("/carrito")
+      navigate("/product")
     }
   };
   return (
     <>
     <div class="logueo">
       <h2>Log In</h2>
+      { error && <div className='error-banner'> {error} </div> }
       <form onSubmit={handleSubmit}>
       <div class="grid-container">
         <div class="grid-item datos">

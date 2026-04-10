@@ -45,7 +45,6 @@ export const CartProvider = ({ children }) => {
             : item
         );
       }
-      
       // Si es nuevo, lo agregamos al array
       return [...prevItems, { product, quantity }];
     });
