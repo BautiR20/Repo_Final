@@ -1,4 +1,4 @@
-.carrito h2{
+.admin-page h2{
     text-align: center;
     margin: 15px;
     padding: 25px;
@@ -6,52 +6,52 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     color: white;
 }
-.carrito .grid-container{
+.admin-page .grid-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 10px;
 }
-.carrito .grid-item{
+.admin-page .grid-item{
     gap: 15px;
     margin: 10px;
     padding: 15px;
     border: 3px solid #E3E5EC ;
     text-align: left;
 }
-.carrito .grid-item.container{
+.admin-page .grid-item.container{
     grid-column: span 2;
     justify-self: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.carrito .grid-item label{
+.admin-page .grid-item label{
     display: block;
     margin: 10px;
     text-align: left;
 }
-.carrito .grid-item input{
+.admin-page .grid-item input{
     display: block;
     margin: 10px;
     text-align: left;
 }
-.carrito .grid-item textarea{
+.admin-page .grid-item textarea{
     display: block;
     margin: 10px;
     text-align: left;
 }
-.carrito .grid-item select{
+.admin-page .grid-item select{
     display: block;
     margin: 10px;
     text-align: left;
 }
 
-.carrito .grid-item.buttons{
+.admin-page .grid-item.buttons{
     margin: 20px 5px 20px 5px;
     text-align: center;
     padding: 5px 2.5px 5px 2.5px;
     border: #E3E5EC;
 }
-.carrito .grid-item button{
+.admin-page .grid-item button{
     margin: 20px 5px 20px 5px;
     text-align: center;
     padding: 5px 2.5px 5px 2.5px;
@@ -60,7 +60,7 @@
     width: 100px;
     color: white;
 }
-.carrito .grid-item button:hover{
+.admin-page .grid-item button:hover{
     border: black solid;
     background-color: #E3E5EC ;
     width: 100px;
@@ -222,4 +222,35 @@
     border: black solid;
     background-color: #E3E5EC ;
     color: black;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th, .admin-table td {
+  padding: 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.admin-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.admin-table tr:hover {
+  background: #f9fafb;
+}
+
+.btn-add{
+  
 }

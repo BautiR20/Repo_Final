@@ -54,3 +54,7 @@ footer {
 .FootLink{
     text-decoration: none;
 }
+.logout-btn{
+    margin: 10px;
+    border: none;
+}

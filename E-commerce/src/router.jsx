@@ -8,6 +8,8 @@ import LoadingPage from "./components/pages/Cargando";
 import ErrorPage from "./components/pages/ErrorPage";
 import Carrito from "./components/pages/Carrito";
 import CrearCuenta from "./components/pages/CrearCuenta";
+import AdminUsuarios from "./components/pages/AdminUsuarios";
+import AdminProductos from "./components/pages/AdminProducts";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +39,14 @@ export const router = createBrowserRouter([
             {
                 path: "/crearCuenta",
                 element: <CrearCuenta />
+            },
+            {
+                path: "/AdminUsuarios",
+                element: <AdminUsuarios />
+            },
+            {
+                path: "/AdminProductos",
+                element: <AdminProductos />
             },
             {
                 path: "*",
