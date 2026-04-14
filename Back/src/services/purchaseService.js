@@ -1,5 +1,5 @@
-import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, where } from 'firebase/firestore'
-import {dbFirebase} from "../config/firebase.js"
+// 1. LIMPIEZA: Quitamos todos los imports de 'firebase/firestore'
+import { dbFirebase } from "../config/firebase.js" 
 import Product from "../models/productModel.js"
 
 // CREATE
@@ -14,9 +14,8 @@ export const createPurchaseService = async (purchaseData) => {
     let totalAmount = 0;
     const processedItems = [];
 
-    // 2. Validar stock y comprobar precios puros en MongoDB
+    // 2. Validar stock y comprobar precios en MongoDB
     for (const item of purchaseData.items) {
-        // En lugar de confiar en el Frontend, buscamos la verdad en la Base de Datos
         const product = await Product.findById(item.productId);
         
         if (!product) {
@@ -25,45 +24,43 @@ export const createPurchaseService = async (purchaseData) => {
             throw error;
         }
 
-        // Chequear stock disponible
         if (product.quantity < item.quantity) {
             const error = new Error(`Not enough stock for product ${product.name}. Available: ${product.quantity}`);
             error.statusCode = 400;
             throw error;
         }
 
-        // Calcular precio en el servidor asumiendo formula (precio * profitRate)
         const currentPrice = Number((product.price * product.profitRate).toFixed(2));
-        
-        totalAmount += currentPrice * item.quantity; // Sumamos al gran total
-        console.log(purchaseData.userId)
+        totalAmount += currentPrice * item.quantity;
+
         processedItems.push({
             productId: item.productId,
-            name: product.name,           // Info auxiliar para el ticket en Firebase
+            name: product.name,
             quantity: item.quantity,
             price: currentPrice,
-            userId: purchaseData.userId        // Unitario final calculado en servidor
+            userId: purchaseData.userId
         });
     }
 
-    // 3. Restar stock en tiempo real en MongoDB tras la aprobación
+    // 3. Restar stock en MongoDB
     for (const item of processedItems) {
         await Product.findOneAndUpdate(
             { _id: item.productId },
-            { $inc: { quantity: -item.quantity } } // Sustracción asíncrona
+            { $inc: { quantity: -item.quantity } }
         );
     }
 
-    // 4. Armar ticket y guardar a la pasarela de Firebase limpio y blindado
+    // 4. Guardar en Firebase usando la sintaxis de ADMIN SDK
     const purchaseDataWithTimeStamp = {
         ...purchaseData,
-        items: processedItems, // Pisamos (sobrescribimos) cualquier ítem falso del Frontend
-        totalAmount: Number(totalAmount.toFixed(2)), // Pisamos totales calculados
-        purchaseDate: new Date(),
+        items: processedItems,
+        totalAmount: Number(totalAmount.toFixed(2)),
+        purchaseDate: new Date(), // Firebase Admin lo convierte a Timestamp solo
         status: "COMPLETED"
     }
 
-    const docRef = await addDoc(collection(dbFirebase, "purchases"), purchaseDataWithTimeStamp)
+    // CAMBIO CLAVE: dbFirebase.collection(...).add(...)
+    const docRef = await dbFirebase.collection("purchases").add(purchaseDataWithTimeStamp);
 
     return {
         id: docRef.id,
@@ -71,74 +68,57 @@ export const createPurchaseService = async (purchaseData) => {
     }
 }
 
-// GET
+// GET ALL
 export const getAllPurchasesService = async () => {
-    // 1. Creamos una consulta ordenada desde el origen (Firebase)
-    // Esto reemplaza tu bloque de .sort() comentado
-    const purchasesRef = collection(dbFirebase, "purchases");
-    const q = query(purchasesRef, orderBy("purchaseDate", "desc"));
+    // CAMBIO: Usamos .orderBy() y .get() del Admin SDK
+    const snapshot = await dbFirebase.collection("purchases")
+        .orderBy("purchaseDate", "desc")
+        .get();
 
-    const querySnapshot = await getDocs(q);
-    const purchases = [];
-
-    querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        
-        purchases.push({
-            id: doc.id,
-            ...data,
-            // 2. Convertimos el Timestamp a un objeto Date de JS aquí mismo
-            // Si purchaseDate existe, usamos toDate(), si no, queda como null
-            purchaseDate: data.purchaseDate?.toDate ? data.purchaseDate.toDate() : data.purchaseDate
-        });
-    });
-
-    return purchases; // Si está vacío, devolverá [] automáticamente por la inicialización
+    return snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        purchaseDate: doc.data().purchaseDate?.toDate ? doc.data().purchaseDate.toDate() : doc.data().purchaseDate
+    }));
 }
 
-//get by user
+// GET BY USER
 export const getPurchasesByUserService = async (userId) => {
     try {
-        const q = query(
-            collection(dbFirebase, "purchases"),
-            where("userId", "==", userId),
-            orderBy("purchaseDate", "desc")
-        );
+        // CAMBIO: .where().orderBy().get()
+        const snapshot = await dbFirebase.collection("purchases")
+            .where("userId", "==", userId)
+            .orderBy("purchaseDate", "desc")
+            .get();
 
-        const querySnapshot = await getDocs(q);
-        
-        // Mapeamos los datos y convertimos la fecha de una vez
-        const purchases = querySnapshot.docs.map(doc => ({
+        return snapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data(),
-            // Convertimos el Timestamp a Date de JS para que sea útil en el front
             purchaseDate: doc.data().purchaseDate?.toDate ? doc.data().purchaseDate.toDate() : doc.data().purchaseDate
         }));
 
-        return purchases;
-
     } catch (error) {
+        console.error("Error al buscar compras por usuario:", error);
         return [];
     }
 }
 
-// get by id
+// GET BY ID
 export const getPurchaseByIdService = async (purchaseId) => {
-    // crear referenciaal documento especifico
-    const docRef = doc(dbFirebase, "purchases", purchaseId)
+    // CAMBIO: .doc().get()
+    const docRef = dbFirebase.collection("purchases").doc(purchaseId);
+    const docSnap = await docRef.get();
 
-    // obtener snapshot del documento
-    const docSnap = await getDoc(docRef)
-
-    if(!docSnap.exists()){
-        const error = new Error("Purchase not found")
-        error.statusCode = 404
-        throw error
+    if (!docSnap.exists) {
+        const error = new Error("Purchase not found");
+        error.statusCode = 404;
+        throw error;
     }
 
+    const data = docSnap.data();
     return {
-        ...docSnap.data(),
         id: docSnap.id,
-        purchaseDate: docSnap.data().purchaseDate?.toDate ? docSnap.data().purchaseDate.toDate() : docSnap.data().purchaseDate
-    }
+        ...data,
+        purchaseDate: data.purchaseDate?.toDate ? data.purchaseDate.toDate() : data.purchaseDate
+    };
 }

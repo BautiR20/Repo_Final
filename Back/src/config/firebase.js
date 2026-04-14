@@ -1,21 +1,16 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore'
-import { API_KEY, APP_ID, AUTH_DOMAIN, MESSAGING_SENDER_ID, PROJECT_ID, STORAGE_BUCKET } from "./config.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// src/config/firebase.js
+import admin from "firebase-admin";
+import { readFileSync } from "fs";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain: AUTH_DOMAIN,
-  projectId: PROJECT_ID,
-  storageBucket: STORAGE_BUCKET,
-  messagingSenderId: MESSAGING_SENDER_ID,
-  appId: APP_ID
-};
+// Leemos el archivo de la llave que descargamos
+const serviceAccount = JSON.parse(
+  readFileSync(new URL("../../serviceAccount.json", import.meta.url))
+);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
-export const dbFirebase = getFirestore(app)
+export const dbFirebase = admin.firestore();
+
+
