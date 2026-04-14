@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import "../../styles/adminUsers.css"
 import { useGetUsers } from "../../hooks/useGetUsers";
 import { useDeleteUser } from "../../hooks/useDeleteUser";
+import UserFormAdmin from "../UserFormAdmin";
+
+
+
 function AdminUsuarios() {
   const { users, error, refetch } = useGetUsers();
   // Permite el borrado de usuarios
@@ -10,7 +14,6 @@ function AdminUsuarios() {
   const [showForm, setShowForm] = useState(false)
 
   const handleDelete = async (id) => {
-    if(window.confirm("¿Estas seguro de que deseas eliminar este usuario?")){
        const result = await deleteUser(id)
        // Si el borrado tuvo exito, refrescamos a los usuarios 
        // y mostramos los cambios
@@ -19,7 +22,6 @@ function AdminUsuarios() {
        } else {
         alert(result.error)
        }
-    }
   }
   // Muestra formulario de crecion de nuevo usuario
   const handleSuccess = () => {
@@ -37,7 +39,9 @@ function AdminUsuarios() {
     <>
       <div class="admin-page">
         <h2>Administración de Usuarios</h2>
-        
+        <div class="form-head-users">
+          <button className="btn-add" onClick={() => setShowForm(true)} >+ Nuevo usuario</button>
+        </div>
         {showForm && (
         <div className="admin-modal">
           <div className="modal-content">

@@ -55,8 +55,10 @@ function AdminProducts() {
     <>
     <div class="admin-page">
       <div class="admin-head">
-      <h2>Carrito de Compras</h2>
+      <h2>Gestión de Productos</h2>
+      <div class="form-head-products">
       <button className="btn-add" onClick={handleOpenCreate}>+ Nuevo Producto</button>
+      </div>
       </div>
       {showModal && (
         <ProductForm 

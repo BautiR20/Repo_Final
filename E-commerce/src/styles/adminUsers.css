@@ -251,6 +251,23 @@
   background: #f9fafb;
 }
 
-.btn-add{
-  
+.form-head-users{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  margin: 25px;
+}
+.form-head-users button{
+  width: 200px;
+  justify-self: center;
+  text-align: center;
+  border: #E3E5EC solid;
+  background-color: #00408C;
+  color: white;
+  padding: 5px;
+}
+.form-head-users button:hover{
+  border: black solid;
+  background-color: #E3E5EC;
+  width: 200px;
+  color: black;
 }

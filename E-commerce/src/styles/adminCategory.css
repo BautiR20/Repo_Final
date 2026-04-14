@@ -1,0 +1,71 @@
+.admin-page h2{
+    text-align: center;
+    margin: 15px;
+    padding: 25px;
+    background-color: #00408C ;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    color: white;
+}
+
+#check{
+    display: inline;
+
+}
+.success-box{
+  width: 400px;
+  height: 200px;
+  text-align: center;
+  border: solid #00408C;
+  background-color: #E3E5EC;
+  color: white;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 20px;
+  box-sizing: border-box;
+
+}
+.success-box h2{
+    color: black;
+    padding: 0 0 5px 0;
+}
+.success-box a{
+    
+    text-align: center;
+    padding: 5px 2.5px 5px 2.5px;
+    border: #E3E5EC solid;
+    background-color: #00408C;
+    width: 200px;
+    color: white;
+    text-decoration: none;
+}
+.success-box a:hover{
+    border: black solid;
+    background-color: #E3E5EC ;
+    color: black;
+}
+.form-head{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px;
+}
+.form-head button{
+  width: 200px;
+  justify-self: center;
+  text-align: center;
+  border: #E3E5EC solid;
+  background-color: #00408C;
+  color: white;
+  padding: 5px;
+}
+.form-head button:hover{
+  border: black solid;
+  background-color: #E3E5EC;
+  width: 200px;
+  color: black;
+}

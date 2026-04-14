@@ -10,6 +10,7 @@ import Carrito from "./components/pages/Carrito";
 import CrearCuenta from "./components/pages/CrearCuenta";
 import AdminUsuarios from "./components/pages/AdminUsuarios";
 import AdminProductos from "./components/pages/AdminProducts";
+import AdminCategory from "./components/pages/AdminCategory";
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: "/AdminProductos",
                 element: <AdminProductos />
+            },
+            {
+                path: "/AdminCategory",
+                element: <AdminCategory />
             },
             {
                 path: "*",
