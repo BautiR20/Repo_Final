@@ -15,8 +15,8 @@ export const connectDB = async () => {
         console.log("Database connected");
     } catch (error) {
         console.error("Error connecting to database", error);
-        // En serverless no cerramos el proceso necesariamente si falla una vez
-        // pero para persistir el error lo lanzamos
+        
+        
         throw error;
     }
-}
+}

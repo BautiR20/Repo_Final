@@ -3,14 +3,14 @@ import { fetchApi } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
 export const useLogin = () => {
-  // TODO: Paso 1. Declarar estados de carga (loading) y error (error).
+  
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  // TODO: Paso 2. Importar la función "login" de nuestro AuthContext.
+  
   const {login} = useAuth()
 
-  // TODO: Paso 3. Crear la función asíncrona loginUser(credentials)
-  // que utilice fetchApi apuntando a '/user/login'
+  
+  
   const loginUser = async (credentials) => {
 
     try {

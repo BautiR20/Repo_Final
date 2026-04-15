@@ -8,22 +8,22 @@ import UserFormAdmin from "../UserFormAdmin";
 
 function AdminUsuarios() {
   const { users, error, refetch } = useGetUsers();
-  // Permite el borrado de usuarios
+  
   const { deleteUser, loading: deleting } = useDeleteUser();
 
   const [showForm, setShowForm] = useState(false)
 
   const handleDelete = async (id) => {
        const result = await deleteUser(id)
-       // Si el borrado tuvo exito, refrescamos a los usuarios 
-       // y mostramos los cambios
+       
+       
        if(result.success){
         refetch()
        } else {
         alert(result.error)
        }
   }
-  // Muestra formulario de crecion de nuevo usuario
+  
   const handleSuccess = () => {
     setShowForm(false)
     refetch()

@@ -13,13 +13,13 @@ function CrearCuenta() {
 
   const [success, setSuccess] = useState(false)
 
-  // TODO: 2. Importar variables de estado desde useRegister (loading, error)
+  
   const { registerUser, loading, error } = useRegister()
   const navigate = useNavigate();
 
-  // Función manejadora para los cambios en los inputs múltiples
+  
   const handleChange = (e) => {
-    // TODO: 3. Programar el desestructurado y actualización de formData aquí
+    
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -28,8 +28,8 @@ function CrearCuenta() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: 4. Lanzar petición de uso. Si ocurre exitosamente, mostrar mensaje 
-    // y navegar al /login
+    
+    
     const result = await registerUser(formData)
     if(result.success){
       setSuccess(true)

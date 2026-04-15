@@ -12,8 +12,8 @@ export const useCreatePurchase = () => {
       setLoading(true);
       setError(null);
        
-      // Armamos el Payload en la estructura exacta que tu backend pide en purchaseModel.
-      // purchaseService.js espera items: [{productId, quantity}]
+      
+      
       const payload = {
         items: cartItems.map(item => ({
           productId: item.product._id || item.product.id,
@@ -22,7 +22,7 @@ export const useCreatePurchase = () => {
         userId: user.id
       };
 
-      // Si Express responde 200/201, no lanza errors
+      
       const data = await fetchApi('/purchase', {
         method: 'POST',
         body: JSON.stringify(payload)

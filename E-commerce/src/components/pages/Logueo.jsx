@@ -8,15 +8,15 @@ function Logueo() {
   const [password, setPassword] = useState("")
 
   const navigate = useNavigate()
-  // TODO: 2. Importar hook useLogin y destructurar sus valores
+  
   const {loginUser, loading, error} = useLogin()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await loginUser({email, password})
 
-    // TODO: 4. Prevenir recarga y ejecutar loginUser. 
-    // Si sale bien, redirigir usando navigate()
+    
+    
     if(result.success){
       navigate("/product")
     }

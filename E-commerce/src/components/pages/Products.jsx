@@ -16,11 +16,11 @@ function Products() {
     const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   
-  // Extraemos refetch para hacer la busqueda manual
+  
   const { products, loading, error, refetch } = useGetProducts();
   const { categories } = useGetCategories();
 
-  // Escuchamos el boton de busqueda o la select box
+  
   const handleSearch = (e) => {
     e.preventDefault();
     const params = {};
@@ -30,17 +30,17 @@ function Products() {
   };
 
   useEffect(() => {
-    // Si cambia de categoria reseteamos la busqueda automaticamente
+    
     const params = {};
     if (searchTerm) params.search = searchTerm;
     if (selectedCategory) params.category = selectedCategory;
     refetch(params);
-    // eslint-disable-next-line
+    
   }, [selectedCategory]);
 
   const { addToCart } = useCart();
 
-  // Asumimos que el backend envia finalPrice o price
+  
   
   if(loading){
         return <>

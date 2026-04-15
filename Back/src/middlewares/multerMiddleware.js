@@ -1,11 +1,11 @@
 import multer from 'multer'
 
-// Configurar el acceso en memoria para evitar archivos temporales en el servidor
+
 const storage = multer.memoryStorage()
 
-//filtro para aceptar solo imagenes
+
 const fileFilter = (req, file, cb) => {
-    // cb(error, success)
+    
     if(file.mimetype.startsWith('image/')){
         cb(null, true)
     } else {
@@ -15,7 +15,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ 
     storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // Límite de 5MB por archivo
+    limits: { fileSize: 5 * 1024 * 1024 }, 
     fileFilter: fileFilter
 });
 

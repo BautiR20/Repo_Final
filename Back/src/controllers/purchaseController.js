@@ -26,7 +26,7 @@ export const getAllPurchases = async (req, res) => {
 export const getPurchasesByUser = async (req, res) => {
     try {
         const {id} = req.params
-        // El usuario solo puede ver sus propias compras, a menos que sea ADMIN o SELLER
+        
         if(req.user.userId !== id && req.user.role === roleEnum[0]){
             return res.status(403).json({ message: "No autorizado para ver compras de otros usuarios" })
         }

@@ -17,11 +17,11 @@ if (process.env.NODE_ENV === "development") {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 }
 
-// Habilitar CORS para permitir peticiones desde el frontend (Vite) de forma segura
+
 app.use(
   cors({
-    origin: "*", // Puerto en el que corre React
-    credentials: true, // Permite envío de cookies/headers de sesión autorizada
+    origin: "*", 
+    credentials: true, 
   }),
 );
 
@@ -29,14 +29,14 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-// Si el ambiente de desarrollo es distinto de test, entonces corremos la base de datos
-// de lo contrario, si es test, no corre la base de datos. Esto es porque la db corre en memoria.
+
+
 if (process.env.NODE_ENV !== "test") {
   connectDB();
 }
 
-// Rutas
-// Agrupador de rutas de productos
+
+
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/user", userRoute);

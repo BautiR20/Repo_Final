@@ -47,10 +47,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         validate: {
             validator: function (value) {
-                // El uso de enums nos permite manejarnos con valores predefinidos desde un listado
+                
                 return roleEnum.includes(value)
             },
-            // props toma el valor que se le fue dado al campo status
+            
             message: props => `${props.value} nos es un rol valido`
         },
         default: roleEnum[0]
@@ -61,15 +61,15 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-// Se encuentra entre la recepcion de los datos para crear un nuevo registro
-// y el guardado del nuevo registro
+
+
 userSchema.pre("save", async function () {
-    // Solo hashear la contraseña si ha sido modificada o es nueva
+    
     if (!this.isModified("password")) {
         return;
     }
     
-    // Encriptamos la password antes de guardarla
+    
     this.password = bcrypt.hashSync(this.password, 10);
 });
 

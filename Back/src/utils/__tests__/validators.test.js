@@ -1,13 +1,13 @@
 import { isGoodPassword } from "../validators";
-// Texto alfanumerico entre 6 a 12 caracteres, 
-// una letra al menos, una mayuscula y una minuscula
-// un numero al menos
+
+
+
 describe('Validators unit tests', () => {
     describe('isGoodPassword', () => {
-        // En este test vamos a testear un metodo que no tiene dependencias
+        
 
         it('should return true for valid passwords', () => {
-            // Caso de exito
+            
             expect(isGoodPassword('Password123')).toBe(true)
             expect(isGoodPassword('A1b2c3')).toBe(true)
         })

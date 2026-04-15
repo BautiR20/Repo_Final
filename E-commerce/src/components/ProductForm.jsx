@@ -48,7 +48,7 @@ export const ProductForm = ({ product, onSubmit, onClose, loading }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Usamos FormData para enviar el archivo
+    
     const data = new FormData();
     data.append('name', formData.name);
     data.append('price', formData.price);

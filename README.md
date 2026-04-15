@@ -5,3 +5,6 @@ Comandos para iniciar proyecto:
             npm i bootstrap@5.3.8 
         Para arrancar el proyecto:
             npm run dev
+    En la carpeta Back:
+        Instalaciones:
+            npm i bcrypt express express-session jsonwebtoken mongodb mongoose cors method-override dotenv

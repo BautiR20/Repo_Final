@@ -1,5 +1,5 @@
 import React from 'react'
-// import gif from "../../../public/ball.gif"
+
 import "../../styles/cargando.css"
 const gif  = "/ball.gif"
 function cargando() {

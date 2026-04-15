@@ -6,7 +6,7 @@ import { uploadImageToSupabase } from "../utils/supabaseStorage.js"
 
 export const createUser = async (req, res) => {
     try {
-        const userData = {...req.body, role: roleEnum[0]} // Obligamos que el auto-registro sea de consumidor
+        const userData = {...req.body, role: roleEnum[0]} 
         const result = await createUserService(userData)
         res.status(201).json(result)
 
@@ -41,14 +41,14 @@ export const updateUser = async (req, res) => {
         }
         const userData = {...(req.body || {})}
 
-        // Debug Log
+        
         console.log("Actualizando usuario ID:", id);
         console.log("Body recibido:", req.body);
         console.log("Archivo recibido:", req.file ? req.file.originalname : "No hay archivo");
 
-        // Si hay imagen la subimos
+        
         if(req.file){
-            // // El bucket para avatares puede ser el mismo 'imagenes' o uno nuevo
+            
            const avatarUrl = await uploadImageToSupabase(req.file, "profile")
            userData.avatar = avatarUrl
         }
@@ -72,7 +72,7 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
     try {
         const {id} = req.params
-        // Deberiamos ver si es administrador
+        
         if(req.user.userId !== id && req.user.role !== roleEnum[2]){
             return res.status(403).json({message: "No authorized"})
         }

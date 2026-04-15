@@ -12,11 +12,11 @@ function Carrito() {
   const [checkoutError, setCheckoutError] = useState('');
 
   const handleCheckout = async () => {
-    // 1. Verificar si hay token en sessionStorage para saber si estam logueados
+    
     const token = window.sessionStorage.getItem('ecommerce_token');
     
     if (!token) {
-      // Redirigir al inicio de sesion si no esta logueado
+      
       navigate('/login?redirect=cart');
       return;
     }
@@ -24,7 +24,7 @@ function Carrito() {
     setCheckoutError('');
     setSuccessMsg('');
 
-    // 2. Disparamos la peticion al Backend de Express
+    
     const result = await checkout(cartItems);
 
     if (result.success) {
